@@ -2,8 +2,18 @@ import React from "react";
 import { styled, css, reset } from "~/stitches.config";
 
 const darkTheme = css.theme({
-  $background: "#303030",
-  $textColor: "#f0f0f0",
+  colors: {
+    $background: "#303030",
+    $textColor: "#f0f0f0",
+  },
+  space: {
+    $s: "0.5rem",
+    $m: "1rem",
+    $l: "1.5rem",
+  },
+  fontSizes: {
+    $xl: "2rem",
+  },
 });
 
 css.global(reset);
@@ -80,16 +90,32 @@ const ButtonGroup = styled("div", {
   },
 });
 
+const SideBySide = styled("div", {
+  display: "grid",
+  gridTemplate: '"dark light" auto / 1fr 1fr',
+});
+
 export default function Main() {
   return (
-    <>
-      <Title>Hello world</Title>
-      <SubTitle>Just testing</SubTitle>
-      <ButtonGroup className={darkTheme} ordered>
-        <ConstructButton>Create</ConstructButton>
-        <DestructButton css={{ color: "yellow" }}>Delete</DestructButton>
-        <Button>Cancel</Button>
-      </ButtonGroup>
-    </>
+    <SideBySide>
+      <div className={darkTheme}>
+        <Title>Hello world</Title>
+        <SubTitle>Just testing</SubTitle>
+        <ButtonGroup ordered>
+          <ConstructButton>Create</ConstructButton>
+          <DestructButton css={{ color: "yellow" }}>Delete</DestructButton>
+          <Button>Cancel</Button>
+        </ButtonGroup>
+      </div>
+      <div>
+        <Title>Hello world</Title>
+        <SubTitle>Just testing</SubTitle>
+        <ButtonGroup ordered>
+          <ConstructButton>Create</ConstructButton>
+          <DestructButton css={{ color: "yellow" }}>Delete</DestructButton>
+          <Button>Cancel</Button>
+        </ButtonGroup>
+      </div>
+    </SideBySide>
   );
 }
